@@ -1,0 +1,81 @@
+<div class="contenedor">
+    <h1><%= nombrePagina %></h1>
+    <div class="informacion-grupo flex2">
+        <div class="imagen ">
+            <% if(news.imagen) { %>
+              <img class="borde" src="/MaterialesNexus/archivos/uploads/news/<%= news.imagen %>">
+                <% } else { %>
+                     <img class="borde" src="/MaterialesNexus/archivos/img/tecnologia_<%= news.categoriaId %>.png">
+                    <%}  %>
+        </div>
+        <div class="texto" style="background-color: rgb(253, 254, 255); 
+    border-radius: 10px; text-align: center; color: rgba(0, 0, 0, 0.753); padding: 2rem;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.836)">
+            <%- news.descripcion %>
+            <% if(news.url){ %>
+                <a target="_blank" class="url" href="<%- news.url %>">Revisa la documentacion oficial</a>
+            <% } %>
+        </div>
+    </div>
+   <!--  <div class=" flex1">
+        <h3>Encuentra cursos de <%= news.categoria.nombre %></h3>
+        <ul class="listado-categorias  grid columnas-2 columnas-md-3 flex1"> 
+            <li>
+                <a href="/categoria-courses/<%= news.categoria.nombre %>">
+                    <img class="courses-img" src="/MaterialesNexus/archivos/img/tecnologia_<%= news.categoriaId %>.png" width="980px" height="15px" alt="">
+                  
+                </a>
+            </li>
+        </ul>
+    </div> -->
+    <!--COMENTARIOS ACA-->
+    <div class="comentarios" style="margin-top: 6rem;">
+        <h2>Comentarios</h2>
+        <% if(comentarios.length > 0 ) { %>
+            <% comentarios.forEach(comentario => { %>
+                <div class="comentario">
+                    <div class="imagen">
+                        <% if(comentario.usuario.imagen) { %>
+                            <img src="/MaterialesNexus/archivos/uploads/profiles/<%= comentario.usuario.imagen%>"> 
+                        <% } %>
+                    </div>
+                    <div class="texto">
+                        <p><%= comentario.mensaje %></p>
+                        <p>Escrito por: 
+                            <a href="/usuarios/<%= comentario.usuario.id %>">
+                                <%= comentario.usuario.nombre %>
+                            </a>
+                        </p>
+
+                        <% if (usuario && (comentario.usuarioId === usuario.id )) { %>
+                            <form action="/delete-comments" method="POST" class="eliminar-comentario">
+                                <input type="hidden" name="idComentario" value="<%= comentario.id %>">
+                                <input type="submit" value="Eliminar" class="btn btn-azul">
+                            </form>
+                        <% } %>
+                        
+                    </div>
+                </div>
+            <% }) %>
+
+        <% } else { %>
+            <p>No hay comentarios aún</p>
+        <% } %>
+        <!--formulario comentarios-->
+        <% if(user) { %>
+            <form action="/news/<%= news.id %>" method="post" class="default-form comentarios">
+                <legend>Agrega un comentario</legend>
+                <div class="campo">
+                    <label>Comentario</label>
+                    <textarea name="comentarios"></textarea>
+                </div>
+                <div class="campo enviar">
+                    <input type="submit" value="Enviar" class="btn btn-rosa">
+                </div>
+            </form>
+        <% } else {  %>
+            <p>Inicia Sesión para Agregar un Comentario</p>
+        <% } %>
+      </div>  <!--/formulario-comentarios-->
+
+</div>

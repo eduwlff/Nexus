@@ -1,0 +1,52 @@
+<main class="contenedor panel-administracion">
+    <h1> <%= nombrePagina %></h1>
+    <% if(user.email==='ed.farina@duocuc.cl'){ %>
+        
+    <div class="seccion-admin">
+        <h2>Todos los cursos</h2>
+        <% if(courses.length>0 ) {  %>
+        <ul>
+            <% courses.forEach(course=>{ %>
+            <li>
+                <div class="informacion-admin">
+                    <p class="fecha"><%= moment(course.fecha).format('LL') %></p>
+                    <a href="/show-course/<%= course.slug %>" target="_blank">
+                      <h3><%= course.nombre %></h3>
+                    </a>
+                    <Small><%= course.interesados.length %> interesados</Small>
+                </div>
+                <div class="acciones contenedor-botones1">
+                    <a href="/delete-course/<%= course.id %>" class="btn btn-rojo" >Eliminar</a>
+                </div>
+            </li>
+            <% })  %>
+        </ul>
+        <% } else { %>
+            <p>Aun no tienes Cursos creados</p>
+            <% } %>
+    </div>
+
+    <div class="seccion-admin">
+        <h2>Todas las Noticias</h2>
+        <% if(news.length){ %>
+            
+            <ul>
+                <% news.forEach(neww=>{ %>
+                <li>
+                    <div class="informacion-admin">
+                        <a href="/news/<%=neww.id %>">
+                            <h3><%= neww.nombre %></h3>
+                        </a>  
+                    </div>
+                    <div class="acciones contenedor-botones1">
+                        <a href="/eliminar-new/<%= neww.id %>" class="btn btn-rojo">Eliminar</a>
+                    </div>
+                </li>
+                <% }) %>
+                </ul>
+           <% } else{ %>
+                <p>No has creado noticias</p>
+            <% } %>
+    </div>
+    <% } %>
+</main>

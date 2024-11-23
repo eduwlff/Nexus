@@ -1,0 +1,73 @@
+<div class="contenedor">
+    <h1><%= nombrePagina %></h1>
+    <h2> Todos cursos</h2>
+    <% if (courses.length > 0 ) { %>
+    <div class="grid columnas-md-3 ">
+        <% courses.forEach(course => { %>
+            <div class="card">
+                <img src="/MaterialesNexus/archivos/img/tecnologia_<%= course.categoriaId %>.png">
+                <div class="card-texto">
+                    <a href="/show-course/<%= course.slug %>">
+                        <h3><%= course.nombre%> </h3>
+                    </a>
+                    <div class="info-autor">
+                        <% if(course.usuario.imagen ) { %>
+                            <div class="imagen">
+                                <img src="/MaterialesNexus/archivos/uploads/profiles/<%=course.usuario.imagen %>">
+                            </div>
+                        <% } else { %>
+                            <div class="imagen"></div>
+                        <% } %>
+                        
+                        <div class="informacion">
+                            <p>Organizado por:</p>
+                            <a href="/usuarios/<%= course.usuario.id %>">
+                                <p class="autor"><%= course.usuario.nombre %></p>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div><!--grid-->
+    <% } else { %>
+        <p>No hay cursos para esta busqueda</p>
+    <% } %>
+
+    <!-- RESULTADOS PARA NOTICIAS-->
+    <h2> Todos Noticias</h2>
+    <% if (news.length > 0 ) { %>
+        <div class="grid columnas-md-3 ">
+            <% news.forEach(neww => { %>
+                <div class="card">
+                    <img src="/MaterialesNexus/archivos/img/tecnologia_<%= neww.categoriaId %>.png">
+                    <div class="card-texto">
+                        <a href="/news/<%= neww.id %>">
+                            <h3><%= neww.nombre%> </h3>
+                        </a>
+                        <div class="info-autor">
+                            <% if(neww.usuario.imagen ) { %>
+                                <div class="imagen">
+                                    <img src="/MaterialesNexus/archivos/uploads/profiles/<%=neww.usuario.imagen %>">
+                                </div>
+                            <% } else { %>
+                                <div class="imagen"></div>
+                            <% } %>
+                            
+                            <div class="informacion">
+                                <p>Creado por:</p>
+                                <a href="/usuarios/<%= neww.usuario.id %>">
+                                    <p class="autor"><%= neww.usuario.nombre %></p>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div><!--grid-->
+        <% } else { %>
+            <p>No hay Noticias para esta busqueda</p>
+        <% } %>
+</div>

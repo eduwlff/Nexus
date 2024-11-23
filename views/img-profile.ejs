@@ -1,0 +1,24 @@
+<main class="contenedor contenedor-formularios ">
+    <h1> <%= nombrePagina %></h1>
+
+    <form class="default-form" method="POST" enctype="multipart/form-data">
+        <legend>Sube tu Imagen que se mostrara en tu perfil</legend>
+        <div class="campo"></div>
+            <label>Imagen</label>
+            <input type="file" name="imagen">
+        </div>
+        <% if(user.imagen){ %>
+        <div class="campo no-padding">
+            <label>Imagen Actual</label>
+            <img src="/MaterialesNexus/archivos/uploads/profiles/<%= user.imagen %>" width="400">
+        </div>
+
+        <% } else{ %>
+            <p>No hay Imagen actual</p>
+            <% } %>
+        <div class="campo enviar">
+            <input type="submit" value="Subir Imagen" class="btn btn-rosa">
+        </div>
+
+    </form>
+</main>

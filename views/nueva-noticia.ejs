@@ -1,0 +1,38 @@
+<main class="contenedor contenedor-formularios no-padding">
+    <h1> <%= nombrePagina %></h1>
+
+    <form class="default-form" action="/nueva-noticia" method="POST" enctype="multipart/form-data">
+        <div class="campo">
+            <label>Titulo</label>
+            <input style="background-color: #0d0f14; border: 1px solid #062458" type="text" name="nombre" placeholder="Titulo Noticia">
+        </div>
+        <div class="campo descripcion">
+            <label>Descripcion</label>
+            <div class="contenedor-editor">
+                <input type="hidden" id="x" name="descripcion">
+                <trix-editor input="x"></trix-editor>
+            </div>
+        </div>
+        <div class="campo">
+            <Label>Categoria</Label>
+            <select name="categoriaId" >
+                <option value="" selected disabled>--Elige una categoria</option>
+                <% categoria.forEach(categoria=>{ %>
+                    <option value="<%= categoria.id %>"><%= categoria.nombre %></option>
+                    <% }) %>
+            </select>
+        </div>
+        <div class="campo"></div>
+            <label>Imagen</label>
+            <input type="file" name="imagen">
+        </div>
+        <div class="campo"></div>
+            <label>Sitio Web</label>
+            <input type="url" name="url" placeholder="Sitio Web">
+        </div>
+        <div class="campo enviar">
+            <input type="submit" value="Crear Noticia" class="btn btn-rosa">
+        </div>
+
+    </form>
+</main>

@@ -1,0 +1,59 @@
+<main class="asistentes contenedor">
+    <h1><%= nombrePagina %></h1>
+    <div class="perfil-flex">
+        <div class="layout__main">
+            <div class="main__user">
+               <figure class="user__container-img">
+                <% if(usuario.imagen) { %>
+                    <img class="img-user" src="/MaterialesNexus/archivos/uploads/profiles/<%= usuario.imagen %>" >
+                <% } %>
+
+               </figure>
+               <div class="user__content">
+                <span class="user__name"><%= usuario.nombre %></span>
+                <span class="user__nick">@<%=usuario.nombre %></span>
+               </div>
+               <p class="user__city">Desarrollador/a de Software</p>
+            </div>
+            <div class="main__follows">
+                <div class="follows__follow">
+                    <p class="follow__number"><%= countNews %></p>
+                    <p class="follow__subtitle">N° de Noticias</p>
+                </div>
+                <div class="follows__follow">
+                    <p class="follow__number"><%= countCourses %></p>
+                    <p class="follow__subtitle">N° de cursos</p>
+                </div>
+                <div class="follows__follow">
+                    <p class="follow__number"><%= countComments %></p>
+                    <p class="follow__subtitle">Comentarios </p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div> <!--info user-->
+    <div class="grupos-usuario">
+        <% if(news.length > 0) { %>
+            <h2>Noticias de <%= usuario.nombre %></h2>
+            <ul class="lista-grupos">
+                <% news.forEach(function(noticia) { %> <!-- Cambio de new a noticia -->
+                    <li>
+                        <div class="imagen">
+                            <% if(noticia.imagen) { %>
+                                <img src="/MaterialesNexus/archivos/uploads/news/<%= noticia.imagen %>">
+                            <% } else { %>
+                                <img src="/MaterialesNexus/archivos/img/categoria_1.jpg" alt="">
+                            <% } %>
+                        </div>
+                        <div class="texto">
+                            <a href="/news/<%= noticia.id %>">
+                                <h3><%= noticia.nombre %></h3>
+                            </a>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </div>
+</main>

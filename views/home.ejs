@@ -1,0 +1,73 @@
+
+<div class="flex">
+    <div class="hero">
+        <h1 class="main_title">
+            Bienvenido,
+            <div class="title_text"">
+                <span class="title_rotate">
+                    Actualizate <br/>
+                    Aprende <br/>
+                    Y Comparte <br/>
+                    en la Comunidad Nexus<br/>
+                </span>
+            </div>
+        </h1>
+    </div>
+    <div class="contenedor ruta" >
+        <h2 class="main__title">¡Conoce nuestra ruta de Aprendizaje!</h2>
+        <div class="grid columnas-md-3 ruta ">
+            <p>Masai es una gran familia, una comunidad de viajeros latinos que busca descubrir el mundo. Hemos dado la vuelta al mundo más de 20 veces y esto nos ha permitido perfeccionar el arte de ofrecer un servicio excepcional. Nos especializamos en organizar viajes grupales de Experiencia Premium All Inclusive, donde valoramos el encuentro genuino entre nuevas personas, la exploración relajada y el disfrute de cada destino a un ritmo propio y especial. Somos una agencia de viajes de alta gama con un espíritu simple y auténtico.
+                Únete a nosotros y descubre un mundo de posibilidades.</p>
+            <a href="/ruta" class="btn btn-cool">Ir a ruta</a>
+        </div>
+    </div>
+    
+    <div class="buscador-inicio">
+        <div class="contenedor">
+            <h2>¿Que quieres Aprender?</h2>
+            <form action="/busqueda" method="GET">
+                <select name="categoria">
+                       <option value=""  selected>-- Todas</option>
+                       <% categorias.forEach(categoria=>{ %>
+                        <option value="<%= categoria.id %>"><%= categoria.nombre %></option>
+                        <% }) %>
+                </select>
+                <input type="text" name="nombre" placeholder="Titulo Curso">
+                <input type="submit" value="Buscar" class="btn btn-rosa">
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    <main class="bg-gris categorias">
+        <h2 style="padding-bottom: 2rem;">Encuentra Noticias por Tecnología</h2>
+    
+        <div class="contenedor">
+            <ul class="listado-categorias  grid columnas-2 columnas-md-3">
+              <% categorias.forEach(categoria=>{ %>
+                <li>
+                    <a href="/categoria-news/<%= categoria.nombre %>">
+                        <img src="/MaterialesNexus/archivos/img/tecnologia_<%= categoria.id %>.png" alt="">
+                        <p style="text-align: center; color:white"><%= categoria.nombre %></p>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    </main>
+    
+    <div class="meeti-bg">
+        <div class="contenedor meeti grid columnas-md-2">
+            <section>
+                <h3>Crea una Noticia</h3>
+                <p>Comparte lo que te gusta o tu pasión con los demás, crea tu noticas hoy mismo sin costos</p>
+            </section>
+            <section>
+                <h3>Únete a un Curso</h3>
+                <p>Conoce personas con tus mismos gustos y pasiones, únete a un curso ya existente y recibe notificaciones sobre próximos eventos</p>
+            </section>
+        </div>
+    </div>
+
+</div>

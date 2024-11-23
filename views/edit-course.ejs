@@ -1,0 +1,83 @@
+<main class="contenedor contenedor-formularios">
+    <h1><%- nombrePagina %></h1>
+    <form class="default-form" method="POST">
+        <legend>Sobre el Curso</legend>
+        <div class="campo">
+            <Label>Tecnologia</Label>
+            <select name="categoriaId" >
+                <option value="" selected disabled>--Elige una Tecnologia</option>
+                <% categoria.forEach(categoria=>{ %>
+                    <option <%= (course.categoriaId === categoria.id ) ? 'selected' : '' %> value="<%= categoria.id %>"><%= categoria.nombre%></option>
+                    <% }) %>
+            </select>
+        </div>
+        <div class="campo">
+            <label>Titulo</label>
+            <input type="text" name="nombre" value="<%= course.nombre %>">
+        </div>
+        <div class="campo">
+            <label>Invitado</label>
+            <input type="text" name="invitado" value="<%= course.invitado %>">
+        </div>
+        <div class="columnas-2 grid">
+            <div class="campo">
+                <label>Fecha</label>
+                <input type="date" name="fecha" value="<%= course.fecha %>">
+            </div>
+            <div class="campo">
+                <label>Hora</label>
+                <input type="time" name="hora" value="<%= course.hora %>">
+            </div>
+        </div>
+        <div class="campo">
+            <label>Cupo</label>
+            <input type="number" min="1" name="cupo" value="<%= course.cupo %>">
+        </div>
+        <div class="campo descripcion">
+            <label>Descripción</label>
+            <div class="contenedor-editor">
+                <input type="hidden" id="x" name="descripcion" value="<%= course.descripcion %>">
+                <trix-editor input="x"></trix-editor>
+            </div>
+        </div>
+        <legend>Ubicación Curso</legend>
+        <div class="campo buscador">
+            <label>Coloca la Dirección del Meeti</label>
+            <div class="contenedor-input">
+                <input type="text" id="formbuscador" placeholder="Ubicación">
+                <small>El asistente colocará una dirección estimada</small>
+            </div>
+        </div>
+        <div id="editar-mapa" class="campo mapa">
+            <div id="mapa"></div>
+        </div>
+        
+        <p class="informacion">Confirma que los siguientes campos sean correctos:</p>
+
+        <div class="campo">
+            <label>Dirección</label>
+            <input type="text" id="direccion" name="direccion" value="<%= course.direccion %>">
+        </div>
+        <div class="campo">
+            <label>Ciudad</label>
+            <input type="text" id="ciudad" name="ciudad" value="<%= course.ciudad %>">
+        </div>
+        <div class="campo">
+            <label>Estado</label>
+            <input type="text" id="estado" name="estado" value="<%= course.estado %>">
+        </div>
+        <div class="campo">
+            <label>País</label>
+            <input type="text" id="pais" name="pais" value="<%= course.pais %>">
+        </div>
+        <div class="campo"></div>
+        <label>Contacto</label>
+        <input type="url" id="url"  name="url" value="<%= course.url %>">
+    </div>
+            <input type="hidden" id="lat" name="lat" readonly="readonly" value="<%= course.ubicacion.coordinates[0] %>">
+            <input type="hidden" id="lng" name="lng" readonly="readonly" value="<%= course.ubicacion.coordinates[1] %>">
+        <div class="campo enviar">
+            <input type="submit" class="btn btn-rosa" value="Guardar Cambios">
+        </div>        
+    </form>
+</main>

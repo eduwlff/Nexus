@@ -1,0 +1,93 @@
+<main class="contenedor panel-administracion">
+    <h1> <%= nombrePagina %></h1>
+
+    <div class="contenedor-botones">
+        <div>
+            <a href="/nueva-noticia" class="btn btn-cool2">Nueva Noticia</a>
+        </div>
+        <div>
+            <a href="/nuevo-curso" class="btn btn-cool2">Nuevo Curso</a>
+        </div>
+       
+            <% if(user.email==='ed.farina@duocuc.cl'){ %>
+                <a class="btn btn-cool2" href="/show-all">Mostrar todo</a>
+                <% } %>
+        
+       
+        
+       
+    </div>
+    <div class="seccion-admin">
+        <h2>Tus cursos</h2>
+        <% if(courses.length>0 ) {  %>
+        <ul>
+            <% courses.forEach(course=>{ %>
+            <li>
+                <div class="informacion-admin">
+                    <p class="fecha"><%= moment(course.fecha).format('LL') %></p>
+                    <a href="/show-course/<%= course.slug %>" target="_blank">
+                      <h3><%= course.nombre %></h3>
+                    </a>
+                    <Small><%= course.interesados.length %> interesados</Small>
+                </div>
+                <div class="acciones contenedor-botones1">
+                    <a href="/edit-course/<%= course.id %>" class="btn1 btn-azul2">Editar</a>
+                    <a href="/asistentes/<%= course.slug %>" class="btn1 btn-rosa">Asistentes</a>
+                    <a href="/delete-course/<%= course.id %>" class="btn1 btn-rojo">Eliminar</a>
+                </div>
+            </li>
+            <% })  %>
+        </ul>
+        <% } else { %>
+            <p>Aun no tienes Cursos creados</p>
+            <% } %>
+    </div>
+
+    <div class="seccion-admin">
+        <h2>Tus Noticias</h2>
+        <% if(news.length){ %>
+            
+            <ul>
+                <% news.forEach(neww=>{ %>
+                <li>
+                    <div class="informacion-admin">
+                        <a href="/news/<%=neww.id %>">
+                            <h3><%= neww.nombre %></h3>
+                        </a>  
+                    </div>
+                    <div class="acciones contenedor-botones1">
+                        <a href="/editar-new/<%= neww.id %>" class="btn1 btn-azul2">Editar</a>
+                        <a href="/imagen-new/<%= neww.id %>" class="btn1 btn-rosa">Imagen</a>
+                        <a href="/eliminar-new/<%= neww.id %>" class="btn1 btn-rojo">Eliminar</a>
+                    </div>
+                </li>
+                <% }) %>
+                </ul>
+           <% } else{ %>
+                <p>No has creado noticias</p>
+            <% } %>
+    </div>
+    <div class="seccion-admin">
+        <h2>Cursos Anteriores</h2>
+        <% if(previous.length>0 ) {  %>
+        <ul>
+            <% previous.forEach(course=>{ %>
+            <li>
+                <div class="informacion-admin">
+                    <p class="fecha"><%= moment(course.fecha).format('LL') %></p>
+                    <h3><%= course.nombre %></h3>
+                    <Small><%= course.interesados.length %> interesados</Small>
+                </div>
+                <div class="acciones contenedor-botones1">
+                    <a href="/edit-course/<%= course.id %>" class="btn1 btn-azul2">Editar</a>
+                    <a href="/asistentes-course/<%= course.id %>" class="btn1 btn-rosa">Asistentes</a>
+                    <a href="/delete-course/<%= course.id %>" class="btn1 btn-rojo">Eliminar</a>
+                </div>
+            </li>
+            <% })  %>
+        </ul>
+        <% } else { %>
+            <p>No hay Cursos anteriores</p>
+            <% } %>
+    </div>
+</main>

@@ -1,0 +1,78 @@
+<div class="encabezado-evento" style=" background-color:white">
+    <div class="contenedor" >
+        <div class="resumen-evento">
+            <h1><%= course.nombre %> </h1>
+            <div class="info-autor" style="margin-top: 8px;">
+                <div class="imagen" >
+                    <% if(course.usuario.imagen) {%>
+                        <img style="border-radius: 50%;" src="/MaterialesNexus/archivos/uploads/profiles/<%= course.usuario.imagen %>">
+                    <% } %>
+                </div>
+                <div class="informacion">
+                    <p>Creado por:</p>
+                    <p class="autor">
+                        <a href="/usuarios/<%= course.usuario.id %>"><%= course.usuario.nombre  %></a>
+                    </p>
+                </div>
+            </div> <!--info autor-->
+        </div> <!--resumen del evento-->
+        <div class="pregunta-asistencia">
+            <% if(user){ %>
+                <% const existe= course.interesados.includes(usuario.id) %>
+                <form action="/confirmar-asistencia/<%= course.slug %>" 
+                    id="confirmar-asistencia">
+                    <p>¿Asistiras?</p>
+                    <% if(existe){ %>
+                        <input type="hidden" id="accion" value="cancelar">
+                        <input type="submit" class="btn btn-rojo" value="Cancelar">
+                        <% } else { %>
+                            <input type="hidden" id="accion" value="confirmar">
+                            <input type="submit" class="btn btn-azul" value="Si">
+                            <% } %>
+                            <div id="mensaje"></div>
+                </form>
+                
+                
+            <% } else { %>
+                <p>Inicia sesión para confirmar tu asistencia</p>
+                <% } %>
+        </div>
+
+    </div>
+</div>
+
+<main class="contenido-evento">
+    <div class="contenedor">
+        <div class="informacion-evento">
+            <div class="descripcion">
+                <img src="/MaterialesNexus/archivos/img/tecnologia_<%= course.categoria.id %>.png">
+
+                <p> <%- course.descripcion %></p>
+            </div> <!--descripcion-->
+            <div class="asistentes">
+                <div class="titulo">
+                    <h3><%= course.interesados.length %> Asistentes</h3>
+                    <a href="/asistentes/<%= course.slug %>">Ver todos</a>
+                </div>
+            </div> <!--asistentes-->
+            
+                
+        </div> <!--infomracion envento-->
+        <aside class="informacion">
+            <div class="fecha">
+                <% moment.locale('es'); %>
+                <% const fecha = course.fecha + ' '+ course.hora ;%>
+                <p><%= moment(fecha).format('LLLL') %> Horas</p>
+            </div>
+            <div class="ubicacion">
+                <p><%=course.direccion %></p>
+            </div>
+            <!--mapa de ubicaicon-->
+            <input type="hidden" id="lat" value="<%= course.ubicacion.coordinates[0] %>">
+            <input type="hidden" id="lng" value="<%= course.ubicacion.coordinates[1] %>">
+            <input type="hidden" name="" id="direccion" value="<%=course.direccion %>">
+            <div id="ubicacion-curso" class="mapa"></div>
+        </aside>
+    </div>
+    
+</main>
