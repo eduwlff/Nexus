@@ -306,6 +306,10 @@ label{
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px black;
     background-color: #0d1122f5;
+    transition: transform 0.3s ease;
+}
+.card:hover{
+    transform: scale(1.05);
 }
 .card-texto {
     border-top: 5px solid transparent; /* Define el borde superior */
@@ -1708,8 +1712,12 @@ opacity: 0;
     min-width: 25rem;
     border-radius: 20px;
     background-color: white;
-    box-shadow: 0px 0px 14px rgb(13, 97, 206);
+    box-shadow: 10px 10px 5  rgb(3, 14, 29);
+    transition: all 0.5s ease-in-out ;
 
+}
+.layout__main:hover{
+    box-shadow: 0px 0px 20px rgb(13, 97, 206);
 }
 
 .main__user{
